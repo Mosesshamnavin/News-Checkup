@@ -11,11 +11,10 @@ function ProfilePage() {
   const name = queryParams.get('name');
   const email = queryParams.get('email');
   const phone_number = queryParams.get('phone_number');
-  const designation = queryParams.get('designation');
   const photo = queryParams.get('photo'); // The photo filename or URL
 
   // Define the path to the user's photo
-  const photoPath = photo ? `http://localhost:9000/uploads/${photo}` : '/path/to/placeholder.png'; // Adjust based on your setup
+  const photoPath = photo ? `http://localhost:3001/${photo}` : '/path/to/placeholder.png'; // Adjust based on your setup
   console.log('this is the photoPath', photoPath);
 
   // Function to handle logout
@@ -34,7 +33,6 @@ function ProfilePage() {
         <h1>{name}</h1>
         <p><strong>Phone Number:</strong> {phone_number}</p>
         <p><strong>Email:</strong> {email}</p>
-        <p><strong>Designation:</strong> {designation}</p>
       </div>
     </div>
   );
