@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const faceapi = require('face-api.js');
+const path = require('path');
 const cors = require('cors');
 const mongoDBConnection = require("./db");
 const user = require("./routes/user");
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+app.use(express.static('uploads'))
 
 mongoDBConnection();
 

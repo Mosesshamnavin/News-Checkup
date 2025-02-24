@@ -4,6 +4,7 @@ const base64 = require('base64-js');
 const path = require('path');
 const User = require("../models/user");
 const canvas = require("canvas");
+var crypto = require("crypto");
 
 const UPLOAD_FOLDER = 'uploads';
 const { Canvas, Image, ImageData } = canvas;
@@ -81,6 +82,28 @@ const CompareImage = async (req, res, next) => {
   }
 }
 
+const loginController = async (req, res, next) => {
+   try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    console.log("user", user);
+    if(user == null || !user){
+       res.status(404).json({ success: false, message: "User not Found" });
+    }else{
+    const isAuthenticated = await user.authenticate(password);
+    if(isAuthenticated){
+      res.status(200).json({ data: user, success: true, message: "Login Sucessfully" })
+    }else{
+      res.status(401).json({ success: false, message: "Incorrect Password" });
+    }
+   }
+
+   }catch{
+    res.status(500).json({ success: false, message: 'An error occurred on the server' });
+   }
+}
+
 module.exports = {
-    CompareImage
+    CompareImage,
+    loginController
 }
