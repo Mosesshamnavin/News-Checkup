@@ -5,7 +5,6 @@ const path = require('path');
 const User = require("../models/user");
 const canvas = require("canvas");
 var crypto = require("crypto");
-const { error } = require('console');
 
 const UPLOAD_FOLDER = 'uploads';
 const { Canvas, Image, ImageData } = canvas;
