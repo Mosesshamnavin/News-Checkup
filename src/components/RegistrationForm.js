@@ -6,33 +6,57 @@ import styled from 'styled-components';
 
 const FormContainer = styled.div`
   width: 400px;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 8px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
   margin: 50px auto;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+  font-size: 16px;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  }
 `;
 
 const Button = styled.button`
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+  padding: 12px;
+  background: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background: #0056b3;
   }
+`;
+
+const Title = styled.h3`
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+`;
+
+const Message = styled.p`
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: ${({ success }) => (success ? 'green' : 'red')};
 `;
 
 const RegistrationForm = () => {
@@ -86,8 +110,8 @@ const RegistrationForm = () => {
 
   return (
     <FormContainer>
-      <h3>Register</h3>
-      {message && <p>{message}</p>}
+      <Title>Register</Title>
+      {message && <Message success={message.includes('Success')}>{message}</Message>}
       <form onSubmit={handleSubmit}>
         <Input
           type="text"

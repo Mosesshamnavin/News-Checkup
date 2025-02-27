@@ -1,6 +1,6 @@
-// src/components/CameraView.js
 import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
+import './CameraView.css';
 
 function CameraView() {
   const videoRef = useRef(null);
@@ -8,14 +8,10 @@ function CameraView() {
   const [message, setMessage] = useState("Checking if you're a registered user...");
 
   useEffect(() => {
-    // Start the camera when the component loads
     startCamera();
-
-    // Capture the image and send it to the backend after a delay
     const timeoutId = setTimeout(() => {
       captureImage();
-    }, 2000); // 2 seconds delay to capture the image
-
+    }, 2000);
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -32,32 +28,31 @@ function CameraView() {
     context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
     const dataURL = canvasRef.current.toDataURL('image/png');
 
-    console.log(dataURL);
-
-    // Send the image to the backend for comparison
     axios.post('http://localhost:3001/api/login/compare-face', { image: dataURL })
       .then(response => {
         if (response.data.success) {
-          setMessage("You are a registered member. We are redirecting you to your profile, hold on...");
-          // Redirect to the profile page after a short delay
+          setMessage("✅ You are a registered member. Redirecting...");
           setTimeout(() => {
             window.location.href = `/profile?name=${encodeURIComponent(response.data.name)}&email=${encodeURIComponent(response.data.email)}&phone_number=${encodeURIComponent(response.data.phone_number)}&designation=${encodeURIComponent(response.data.designation)}&photo=${encodeURIComponent(response.data.photo)}`;
-          }, 3000); // 3 seconds delay
+          }, 3000);
         } else {
-          setMessage("Please register your profile.");
+          setMessage("❌ You are not registered. Please sign up.");
         }
       })
       .catch(error => {
         console.error("There was an error!", error);
-        setMessage("An error occurred while checking your profile.");
+        setMessage("⚠️ An error occurred while checking your profile.");
       });
   };
 
   return (
-    <div>
-      <video ref={videoRef} autoPlay muted style={{ width: '320px', height: '240px' }} />
-      <canvas ref={canvasRef} style={{ display: 'none' }} width="320" height="240"></canvas>
-      <p>{message}</p>
+    <div className="container">
+      <div className="glass-card">
+        <h2>🔍 Face Recognition Login</h2>
+        <video ref={videoRef} autoPlay muted className="video-feed" />
+        <canvas ref={canvasRef} style={{ display: 'none' }} width="320" height="240"></canvas>
+        <p className="status-message">{message}</p>
+      </div>
     </div>
   );
 }
