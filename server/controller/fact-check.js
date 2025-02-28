@@ -1,4 +1,4 @@
-const { predictFakeNews } = require("../fact-check/predict");
+// const { predictFakeNews } = require("../fact-check/predict");
 const axios = require('axios');
 const GOOGLE_API_KEY = 'AIzaSyCUJuKz_nAbIHb45SYKImwkfB2yhyfiQWA';
 const GOOGLE_FACT_CHECK_URL = 'https://factchecktools.googleapis.com/v1alpha1/claims:search';
