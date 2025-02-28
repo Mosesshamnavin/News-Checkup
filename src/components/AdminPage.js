@@ -2,12 +2,32 @@ import React from "react";
 import { Container, Row, Col, Form, Button, Navbar, Nav } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./AdminPage.css"; // Add custom styles if needed
+import axios from 'axios';
 
 function AdminPage() {
   const navigate = useNavigate();
+  const [message, setMessage] = React.useState('');
+  const [formData, setFormData] = React.useState({
+    article : ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleLogout = () => {
     navigate("/"); // Redirect to the homepage
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3001/api/fact-check', formData);
+      console.log(response);
+      setMessage(response)
+    } catch (error) {
+      setMessage('Invalid credentials. Please try again.');
+    }
   };
 
   return (
@@ -44,18 +64,18 @@ function AdminPage() {
           <div className="news-form">
             <h4>Write a Post</h4>
             <Form>
-              <Form.Group className="mb-3">
+              {/* <Form.Group className="mb-3">
                 <Form.Label>News Title:</Form.Label>
                 <Form.Control type="text" placeholder="Enter title" />
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3">
                 <Form.Label>Content:</Form.Label>
-                <Form.Control as="textarea" rows={5} placeholder="Write content here..." />
+                <Form.Control name="article" as="textarea" onChange={handleChange}  on rows={5} placeholder="Write content here..." />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Save
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Submit
               </Button>
             </Form>
           </div>
