@@ -8,7 +8,7 @@ const mongoDBConnection = require("./db");
 const user = require("./routes/user");
 const login = require("./routes/login");
 const factCheck = require("./routes/fact-check");
-const {trainModel } = require("./fact-check/model");
+// const {trainModel } = require("./fact-check/model");
 const errorHandler = require("./middlewares/error.middleware");
 const app = express();
 app.use(cors());
@@ -38,7 +38,7 @@ app.use(errorHandler);
 
 const startServer = async () => {
     await loadModels();
-    await trainModel();
+    // await trainModel();
     app.listen(3001, () => {
       console.log('Server is running on http://localhost:3001');
     });
