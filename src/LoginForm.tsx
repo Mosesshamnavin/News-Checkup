@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { localstorage } from './helpers/localStorage';
 import { Button } from './components/ui/button';
 import {
   Card,
@@ -36,7 +36,8 @@ const LoginForm = () => {
         formData,
       );
       setMessage('Login successful!');
-      navigate('/dashboard');
+      localstorage.set('token', response.data.token)
+      navigate('/news-check');
     } catch (error) {
       setMessage('Invalid credentials. Please try again.');
     }

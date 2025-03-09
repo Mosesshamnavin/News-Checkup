@@ -2,12 +2,16 @@ import {
   Calendar,
   Home,
   Inbox,
-  Search,
-  Settings,
+  ListChecks,
+  NewspaperIcon,
   User2,
+  LogOutIcon,
+  UserCircle,
   ChevronUp,
 } from 'lucide-react';
+
 import React from 'react';
+import Authorization from "./helpers/Authorization";
 
 import {
   Sidebar,
@@ -30,33 +34,24 @@ import {
 // Menu items.
 const items = [
   {
-    title: 'Home',
-    url: '/test',
-    icon: Home,
+    title: 'Profile',
+    url: '/profile',
+    icon: User2,
   },
   {
-    title: 'Inbox',
-    url: '#',
-    icon: Inbox,
+    title: 'New Check',
+    url: '/news-check',
+    icon: NewspaperIcon,
   },
   {
-    title: 'Calendar',
-    url: '#',
-    icon: Calendar,
-  },
-  {
-    title: 'Search',
-    url: '#',
-    icon: Search,
-  },
-  {
-    title: 'Settings',
-    url: '#',
-    icon: Settings,
-  },
+    title: 'Checked News List',
+    url: '/news-list',
+    icon: ListChecks,
+  }
 ];
 
 export function AppSidebar() {
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -84,7 +79,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> User's Settings
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -92,8 +87,13 @@ export function AppSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => {  Authorization.logout(); window.location.href = '/news-check'; }}>
                   <span>Sign out</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem><UserCircle></UserCircle>
+                <a href='/profile'>
+                      <span>Profile</span>
+                </a>                
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
