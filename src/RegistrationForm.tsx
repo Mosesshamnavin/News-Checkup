@@ -14,7 +14,12 @@ import {
 } from './components/ui/card';
 import { Input } from './components/ui/input';
 import { Label } from './components/ui/label';
+<<<<<<< HEAD
 import { Any } from '@tensorflow/tfjs';
+=======
+import * as tf from '@tensorflow/tfjs';
+
+>>>>>>> added
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<{
