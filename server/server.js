@@ -10,6 +10,8 @@ const login = require("./routes/login");
 const factCheck = require("./routes/fact-check");
 // const {trainModel } = require("./fact-check/model");
 const errorHandler = require("./middlewares/error.middleware");
+const authMiddleware = require("./middlewares/authenticate.middleware");
+require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
@@ -29,7 +31,7 @@ const loadModels = async () => {
 
 app.use("/api/user", user);
 app.use("/api/login", login);
-app.use("/api/fact-check", factCheck);
+app.use("/api/fact-check", authMiddleware.checkJwt, factCheck);
 
 app.use(errorHandler);
 // app.listen(3001, () => {
