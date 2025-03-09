@@ -1,4 +1,3 @@
-// src/components/LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -40,38 +39,42 @@ const NewsCheck = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="ml-14">
-        <Card className="w-[350px] h-[420px]">
-          <CardHeader>
-            <CardTitle>News Check</CardTitle>
-            <CardDescription>{message}</CardDescription>
-          </CardHeader>
-          <form onSubmit={handleSubmit}>
-            <CardContent>
-              <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="article">Article</Label>
-                  <Input
-                    type="article"
-                    name="article"
-                    id="article"
-                    placeholder="Article"
-                    value={formData.article}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+    <div className="flex items-center justify-center min-h-screen w-full bg-gray-900">
+      <Card className="w-[400px] p-6 shadow-lg rounded-lg bg-gray-700 border border-gray-700">
+        <CardHeader>
+          <CardTitle className="text-white">News Check</CardTitle>
+          <CardDescription className="text-gray-400">{message}</CardDescription>
+        </CardHeader>
+        <form onSubmit={handleSubmit}>
+          <CardContent>
+            <div className="grid w-full items-center gap-4">
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="article" className="text-gray-300">
+                  Article
+                </Label>
+                <Input
+                  type="text"
+                  name="article"
+                  id="article"
+                  placeholder="Enter article text..."
+                  value={formData.article}
+                  onChange={handleChange}
+                  required
+                  className="bg-gray-900 text-white border-gray-600"
+                />
               </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button type="submit">Submit</Button>
-            </CardFooter>
-          </form>
-        </Card>
-      </div>
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-900">
+              Submit
+            </Button>
+          </CardFooter>
+        </form>
+      </Card>
     </div>
   );
 };
+
 
 export default NewsCheck;

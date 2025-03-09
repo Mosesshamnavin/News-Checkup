@@ -2,17 +2,11 @@ import {
   Calendar,
   Home,
   Inbox,
-<<<<<<< HEAD
-  Search,
-  Settings,
-  User2,
-=======
   ListChecks,
   NewspaperIcon,
   User2,
   LogOutIcon,
   UserCircle,
->>>>>>> added
   ChevronUp,
 } from 'lucide-react';
 import React from 'react';
@@ -35,35 +29,6 @@ import {
   DropdownMenuTrigger,
 } from './components/ui/dropdown-menu';
 
-<<<<<<< HEAD
-// Menu items.
-const items = [
-  {
-    title: 'Home',
-    url: '/test',
-    icon: Home,
-  },
-  {
-    title: 'Inbox',
-    url: '#',
-    icon: Inbox,
-  },
-  {
-    title: 'Calendar',
-    url: '#',
-    icon: Calendar,
-  },
-  {
-    title: 'Search',
-    url: '#',
-    icon: Search,
-  },
-  {
-    title: 'Settings',
-    url: '#',
-    icon: Settings,
-  },
-=======
 const items = [
   {
     title: 'Profile',
@@ -80,7 +45,6 @@ const items = [
     path: "./news-checked-list",
     icon: ListChecks,
   }
->>>>>>> added
 ];
 
 export function AppSidebar() {
@@ -88,21 +52,13 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-<<<<<<< HEAD
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-=======
           <SidebarGroupLabel><b>Application</b></SidebarGroupLabel>
->>>>>>> added
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-<<<<<<< HEAD
-                    <a href={item.url}>
-=======
                     <a href={item.path}>
->>>>>>> added
                       <item.icon />
                       <span>{item.title}</span>
                     </a>
@@ -119,23 +75,12 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-<<<<<<< HEAD
-                  <User2 /> Username
-=======
                   <User2 /> User's Settings
->>>>>>> added
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 side="top"
-<<<<<<< HEAD
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-=======
                 className="w-[--radix-popper-anchor-width]">
                 <DropdownMenuItem><LogOutIcon></LogOutIcon>
                   <span>Sign out</span>
@@ -143,7 +88,6 @@ export function AppSidebar() {
                 <DropdownMenuItem><UserCircle></UserCircle>
                   <span>Profile</span>
                 </DropdownMenuItem>
->>>>>>> added
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
