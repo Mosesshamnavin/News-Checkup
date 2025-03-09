@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require('path');
+const authMiddleware = require("../middlewares/authenticate.middleware");
 
 const userController = require("../controller/user");
 
@@ -17,5 +18,5 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/", upload.single('photo'), userController.createUser);
-router.get("/:id", userController.getUser);
+router.get("/", authMiddleware.checkJwt, userController.getUser);
 module.exports = router;
