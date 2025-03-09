@@ -60,7 +60,7 @@ const CompareImage = async (req, res, next) => {
       }
 
       if (userFound && userDetails) {
-        let token = jwt.sign(userDetails, process.env.JWT_SECRET, {
+        let token = jwt.sign(userDetails._doc, process.env.JWT_SECRET, {
           expiresIn: "24h", //1 day
         });
         res.json({

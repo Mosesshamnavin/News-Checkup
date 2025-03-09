@@ -24,7 +24,6 @@ const NewsCheckedList = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   React.useEffect(() => {
     const headers = Authorization.getHttpHeader();
-    console.log(headers);
         axios
         .get("http://localhost:3001/api/fact-check", { headers })
         .then((response) => {
