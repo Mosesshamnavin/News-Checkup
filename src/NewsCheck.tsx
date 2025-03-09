@@ -14,6 +14,7 @@ import {
 } from './components/ui/card';
 import { Input } from './components/ui/input';
 import { Label } from './components/ui/label';
+import Authorization from "./helpers/Authorization";
 
 const NewsCheck = () => {
   const [message, setMessage] = React.useState('');
@@ -28,14 +29,17 @@ const NewsCheck = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
+          const headers = Authorization.getHttpHeader();
+    
       const response: any = await axios.post(
         'http://localhost:3001/api/fact-check',
         formData,
+        { headers }
       );
       console.log(response);
-      setMessage(response);
+      //setMessage(response);
     } catch (error) {
-      setMessage('Invalid credentials. Please try again.');
+      setMessage('Failed. Please try again.');
     }
   };
 

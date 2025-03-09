@@ -14,7 +14,6 @@ import {
 } from './components/ui/card';
 import { Input } from './components/ui/input';
 import { Label } from './components/ui/label';
-import { Any } from '@tensorflow/tfjs';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<{
@@ -68,10 +67,10 @@ const RegistrationForm = () => {
           },
         },
       );
-      setMessage(response.data);
+      //setMessage(response.data);
       navigate('/home');
     } catch (error) {
-      setMessage('Error registering your profile. Please try again.');
+     // setMessage('Error registering your profile. Please try again.');
     }
   };
 

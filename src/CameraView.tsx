@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
+import { localstorage } from './helpers/localStorage';
 import {
   Card,
   CardContent,
@@ -49,10 +50,10 @@ function CameraView() {
       .post('http://localhost:3001/api/login/compare-face', { image: dataURL })
       .then((response) => {
         if (response.data.success) {
+                localstorage.set('token', response.data.token)
+        
           setMessage('✅ You are a registered member. Redirecting...');
-          setTimeout(() => {
-            window.location.href = `/profile?name=${encodeURIComponent(response.data.name)}&email=${encodeURIComponent(response.data.email)}&phone_number=${encodeURIComponent(response.data.phone_number)}&designation=${encodeURIComponent(response.data.designation)}&photo=${encodeURIComponent(response.data.photo)}`;
-          }, 3000);
+           window.location.href = `/news-check`;
         } else {
           setMessage('❌ You are not registered. Please sign up.');
         }
